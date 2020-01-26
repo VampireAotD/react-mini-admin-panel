@@ -1,0 +1,17 @@
+.form{
+    width: 30%;
+    height: 50%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 0 5px #cccccc;
+}
+@media screen and (max-width: 769px){
+    .form{
+        width: 100%;
+    }
+}

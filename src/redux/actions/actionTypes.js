@@ -1,0 +1,6 @@
+export const FETCH_START = 'FETCH_START'
+export const FETCH_SUCCESS = 'FETCH_SUCCESS'
+export const FETCH_ERROR = 'FETCH_ERROR'
+export const UPDATE_ITEM = 'UPDATE_ITEM'
+export const AUTH_SUCCESS = 'AUTH_SUCCESS'
+export const LOG_OUT = 'LOG_OUT'
