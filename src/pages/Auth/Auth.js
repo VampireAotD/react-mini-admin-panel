@@ -2,7 +2,7 @@ import React from 'react'
 import Form from '../../components/Form/Form'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { FormControl, TextField, FormHelperText, Button} from '@material-ui/core'
+import { FormControl, TextField, FormHelperText, Button, Typography, CircularProgress} from '@material-ui/core'
 import PropTypes from 'prop-types'
 import { connect } from "react-redux"
 import { auth } from "../../redux/actions/AuthActions"
@@ -37,6 +37,19 @@ class Auth extends React.Component{
                         <Form
                             onSubmit={handleSubmit}
                         >
+
+                            <FormControl
+                                margin={'normal'}
+                            >
+                                <Typography
+                                    variant={'body1'}
+                                    component={'h1'}
+                                    align={'center'}
+                                >
+                                    Sign In
+                                </Typography>
+                            </FormControl>
+
                             <FormControl
                                 margin={'normal'}
                             >
@@ -76,11 +89,33 @@ class Auth extends React.Component{
                                     Login
                                 </Button>
                             </FormControl>
+
+                            {this.props.loading
+                                ?
+                                <CircularProgress/>
+                                :
+                                <FormControl
+                                    margin={'normal'}
+                                >
+                                    <FormHelperText
+                                        error
+                                    >
+                                        {this.props.error}
+                                    </FormHelperText>
+                                </FormControl>
+                            }
                         </Form>
                     )
                 }}
             </Formik>
         )
+    }
+}
+
+function mapStateToProps(state) {
+    return{
+        loading : state.auth.loading,
+        error : state.auth.error
     }
 }
 
@@ -94,4 +129,4 @@ Auth.propTypes = {
     auth : PropTypes.func.isRequired
 }
 
-export default connect(null, mapDispatchToProps)(Auth)
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)

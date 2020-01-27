@@ -2,7 +2,7 @@ import React from 'react'
 import Form from '../Form/Form'
 import storage from '../Firebase/Firebase'
 import FileUploader from 'react-firebase-file-uploader'
-import { CircularProgress } from '@material-ui/core'
+import { Typography, CircularProgress } from '@material-ui/core'
 import axios from 'axios'
 
 const ref = React.createRef()
@@ -95,6 +95,13 @@ class ChangeImage extends React.Component{
             this.state.item
             ?
                 <Form>
+                    <Typography
+                        variant={'body1'}
+                        component={'h1'}
+                        align={'center'}
+                    >
+                        Choose your image
+                    </Typography>
                     <FileUploader
                         accept={'image/*'}
                         name={'image'}

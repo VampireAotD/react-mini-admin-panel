@@ -7,13 +7,18 @@ export function auth(userData) {
         try{
             const response  = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCmQmRNNGLHGdmKPXMu6WMEXpXI2erUaZQ',userData)
 
-            const expire = new Date(new Date().getTime() + response.data.expiresIn * 1000)
+            if(response.status === 200){
+                const expire = new Date(new Date().getTime() + response.data.expiresIn * 1000)
 
-            localStorage.setItem('expire',expire)
-            localStorage.setItem('token', response.data.idToken)
+                localStorage.setItem('expire',expire)
+                localStorage.setItem('token', response.data.idToken)
 
-            dispatch(authSuccess(response.data.idToken))
-            dispatch(autoLogout(response.data.expiresIn))
+                dispatch(authSuccess(response.data.idToken))
+                dispatch(autoLogout(response.data.expiresIn))
+            }
+            else if(response.status === 400){
+                console.log(123)
+            }
         }
         catch (error){
             fetchError(error)
